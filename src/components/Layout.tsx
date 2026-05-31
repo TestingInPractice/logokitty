@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import InstallPrompt from './InstallPrompt'
 
 export default function Layout() {
   return (
@@ -7,6 +8,7 @@ export default function Layout() {
         <span className="header-title">Логокотик</span>
       </header>
       <main style={{ flex: 1, overflow: 'auto' }}><Outlet /></main>
+      <InstallPrompt />
     </div>
   )
 }

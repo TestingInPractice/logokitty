@@ -7,6 +7,8 @@ import Auth from './pages/Auth'
 import Feed from './pages/Feed'
 import ChildHome from './pages/ChildHome'
 import ChildCreate from './pages/ChildCreate'
+import SectionView from './pages/SectionView'
+import Game from './pages/Game'
 
 function Protected({ children }: { children: React.ReactNode }) {
   const [ok, setOk] = useState<boolean | null>(null)
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/feed" element={<Feed />} />
         <Route path="/child" element={<ChildHome />} />
         <Route path="/child/create" element={<ChildCreate />} />
+        <Route path="/section/:id" element={<SectionView />} />
+        <Route path="/game/:id" element={<Game />} />
       </Route>
       <Route path="*" element={<Navigate to="/auth" replace />} />
     </Routes>

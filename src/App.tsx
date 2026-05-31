@@ -12,6 +12,7 @@ import Game from './pages/Game'
 import Shop from './pages/Shop'
 import Diagnostics from './pages/Diagnostics'
 import Subscription from './pages/Subscription'
+import Settings from './pages/Settings'
 
 function Protected({ children }: { children: React.ReactNode }) {
   const [ok, setOk] = useState<boolean | null>(null)
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/diagnostics" element={<Diagnostics />} />
         <Route path="/subscription" element={<Subscription />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
       <Route path="*" element={<Navigate to="/auth" replace />} />
     </Routes>

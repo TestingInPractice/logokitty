@@ -6,7 +6,7 @@ import { db } from '../api/db'
 export default function Auth() {
   const n = useNavigate(); const setUser = useStore(s => s.setUser); const setPage = useStore(s => s.setPage)
   const [name,setName] = useState(''); const [cn,setCn] = useState(''); const [age,setAge] = useState('3')
-  const [catN,setCatN] = useState(''); const [catC,setCatC] = useState('orange'); const [step,setStep] = useState<'login'|'create'>('login')
+  const [catN,setCatN] = useState(''); const [catC,setCatC] = useState('orange')
 
   const handleCreate = () => {
     if (!cn.trim()) return
@@ -18,13 +18,13 @@ export default function Auth() {
     db.saveCat(cat); useStore.getState().setCat(cat); setPage('feed'); n('/feed')
   }
 
-  if (step === 'create') return <div className="page">
-    <div className="text-center mb-16" style={{paddingTop:40}}>
+  return <div className="page">
+    <div className="text-center" style={{paddingTop:40}}>
       <div style={{fontSize:64,marginBottom:8}}>🐱</div>
       <div className="text-xl">Логокотик</div>
       <div className="text-muted mt-8">Логопедическое приложение для детей 2–8 лет</div>
     </div>
-    <div className="card"><div className="col gap-16">
+    <div className="card mt-16"><div className="col gap-16">
       <div><label style={{fontWeight:600,fontSize:14,display:'block',marginBottom:6}}>Ваше имя</label>
         <input value={name} onChange={e=>setName(e.target.value)} placeholder="Мама / Папа"
           style={{width:'100%',padding:'12px 16px',borderRadius:'var(--radius-sm)',border:'2px solid #f0e8e0',fontSize:16,outline:'none'}}/></div>
@@ -34,6 +34,9 @@ export default function Auth() {
       <div><label style={{fontWeight:600,fontSize:14,display:'block',marginBottom:6}}>Возраст</label>
         <input type="number" min="2" max="8" value={age} onChange={e=>setAge(e.target.value)}
           style={{width:'100%',padding:'12px 16px',borderRadius:'var(--radius-sm)',border:'2px solid #f0e8e0',fontSize:16,outline:'none'}}/></div>
+      <button className="btn btn-outline" onClick={()=>{setName('Анна');setCn('Миша');setAge('3');setCatN('Барсик')}}>
+        🧪 Заполнить тестовыми данными
+      </button>
     </div></div>
     <div className="card mt-16">
       <div className="text-center mb-8" style={{fontWeight:600}}>Создай котика</div>
@@ -48,20 +51,5 @@ export default function Auth() {
       </div>
     </div>
     <button className="btn btn-primary mt-16" onClick={handleCreate}>Начать заниматься!</button>
-  </div>
-
-  return <div className="page">
-    <div className="text-center" style={{paddingTop:60}}>
-      <div style={{fontSize:80,marginBottom:16}}>🐱</div>
-      <div className="text-xl mb-8">Логокотик</div>
-      <p className="text-muted mb-16" style={{maxWidth:280,margin:'0 auto'}}>Логопедические занятия с котиком для детей 2–8 лет</p>
-    </div>
-    <div className="card mt-16" style={{textAlign:'center',padding:24}}>
-      <button className="btn btn-primary mb-8" onClick={() => {setUser({id:crypto.randomUUID(),name:'Тестовый пользователь',createdAt:Date.now()});setStep('create')}}>
-        Войти через Telegram
-      </button>
-      <div className="text-muted mt-8 mb-8" style={{fontSize:12}}>или</div>
-      <button className="btn btn-outline" onClick={()=>setStep('create')}>Начать без Telegram</button>
-    </div>
   </div>
 }

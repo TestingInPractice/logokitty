@@ -3,9 +3,8 @@ import { useStore } from '../store/useStore'
 
 export default function Settings() {
   const n = useNavigate(); const user = useStore(s => s.user); const children = useStore(s => s.children)
-  const setUser = useStore(s => s.setUser); const setChildren = useStore(s => s.setChildren)
-  const setAID = useStore(s => s.setActiveChildId); const setPage = useStore(s => s.setPage)
-  const logout = () => { localStorage.clear(); setUser(null); setChildren([]); setAID(null); setPage('auth'); n('/auth') }
+  const clearAll = useStore(s => s.clearAll)
+  const logout = () => { clearAll(); n('/auth') }
   return <div className="page">
     <div className="text-center mb-16"><div style={{fontSize:48,marginBottom:8}}>⚙️</div><div className="text-lg">Настройки</div></div>
     <div className="card">

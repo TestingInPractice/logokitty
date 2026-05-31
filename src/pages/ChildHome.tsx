@@ -53,6 +53,7 @@ export default function ChildHome() {
 
       <div className="row justify-center" style={{ gap: 12, marginTop: 16 }}>
         <button className="btn btn-sm btn-outline" onClick={() => n('/shop')}>🛍️ Магазин</button>
+        <button className="btn btn-sm btn-outline" onClick={() => n('/diagnostics')}>🩺 Диагностика</button>
         <button className="btn btn-sm btn-outline" onClick={() => n('/subscription')}>💎 Premium</button>
       </div>
     </div>

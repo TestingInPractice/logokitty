@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { db } from './api/db'
+import { useStore } from './store/useStore'
 import Layout from './components/Layout'
 import Auth from './pages/Auth'
 import Feed from './pages/Feed'
+import ChildHome from './pages/ChildHome'
+import ChildCreate from './pages/ChildCreate'
 
 function Protected({ children }: { children: React.ReactNode }) {
   const [ok, setOk] = useState<boolean | null>(null)
@@ -13,11 +16,16 @@ function Protected({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const loadUser = useStore(s => s.loadUser)
+  useEffect(() => { loadUser() }, [loadUser])
+
   return (
     <Routes>
       <Route path="/auth" element={<Auth />} />
       <Route element={<Protected><Layout /></Protected>}>
         <Route path="/feed" element={<Feed />} />
+        <Route path="/child" element={<ChildHome />} />
+        <Route path="/child/create" element={<ChildCreate />} />
       </Route>
       <Route path="*" element={<Navigate to="/auth" replace />} />
     </Routes>

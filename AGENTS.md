@@ -17,3 +17,6 @@
 - Supabase (PostgreSQL + Auth + Storage)
 - ElevenLabs TTS → git LFS → PWA cache
 - YooKassa / Robokassa for payments
+
+## Test Cases
+- `docs/specs/test-cases.md` — 40+ automated test cases (auth, games, shop, sub, PWA, edge)
